@@ -25,6 +25,7 @@ nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Permitir el ajuste en pantallas pequeñas */
 }
 
 nav ul li {
@@ -68,11 +69,6 @@ nav ul li a {
     text-align: center;
 }
 
-/* Justificar texto en Sobre Nosotros */
-.justificado {
-    text-align: justify;
-}
-
 #servicios .service-grid {
     display: flex;
     justify-content: space-around;
@@ -86,8 +82,7 @@ nav ul li a {
     border-radius: 10px;
     padding: 20px;
     margin: 20px 0;
-    position: relative;
-    transition: transform 0.3s ease; /* Para la animación en hover */
+    position: relative; /* Para que la animación de .extra-info funcione correctamente */
 }
 
 .service img {
@@ -95,21 +90,18 @@ nav ul li a {
     border-radius: 10px;
 }
 
+/* Para que el texto adicional esté oculto inicialmente */
 .service .extra-info {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
+    opacity: 0; /* Lo hace invisible */
+    max-height: 0; /* Oculta el contenido */
+    overflow: hidden; /* Evita que el contenido salga de los límites */
     transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
+/* Animación al pasar el mouse sobre la tarjeta del servicio */
 .service:hover .extra-info {
-    opacity: 1;
-    max-height: 100px;
-}
-
-/* Animación de zoom en hover para servicios */
-.service:hover {
-    transform: scale(1.05);
+    opacity: 1; /* Hace visible el texto adicional */
+    max-height: 100px; /* Ajusta según el contenido adicional */
 }
 
 footer {
@@ -130,7 +122,7 @@ form label {
     margin: 10px 0 5px 0;
 }
 
-form input, form textarea {
+form input, form textarea, form select {
     padding: 10px;
     width: 100%;
     max-width: 400px;
@@ -160,13 +152,14 @@ form button {
     transition: background-color 0.3s ease;
 }
 
+/* Cambia el color del botón cuando el mouse pasa sobre él */
 .btn-instagram:hover {
     background-color: #D73553;
 }
 
 /* Estilos para el botón de contacto */
 .btn-contacto {
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Color verde */
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -176,73 +169,54 @@ form button {
     transition: background-color 0.3s ease;
 }
 
+/* Cambia el color del botón de contacto cuando el mouse pasa sobre él */
 .btn-contacto:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Un verde más oscuro */
 }
 
-/* Animaciones para secciones */
-.section h2 {
-    animation: fadeIn 1s ease-in-out;
-}
-
-.section p, .section ul {
-    animation: fadeInUp 1.5s ease-in-out;
-}
-
-#solicitud-servicios form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#solicitud-servicios label {
-    margin: 10px 0 5px 0;
-    text-align: left;
-    width: 100%;
-    max-width: 400px;
-}
-
-#solicitud-servicios input, #solicitud-servicios select {
-    padding: 10px;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#solicitud-servicios button {
-    margin-top: 20px;
-    background-color: #ff6347;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#solicitud-servicios button:hover {
-    background-color: #ff4500;
-}
-
-
-/* Keyframes para animaciones */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
+/* Media queries para hacer la página responsiva */
+@media (max-width: 1024px) {
+    #servicios .service {
+        width: 45%; /* Dos columnas en tabletas */
     }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+@media (max-width: 768px) {
+    #servicios .service {
+        width: 100%; /* Una columna en móviles */
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    #hero h1 {
+        font-size: 2rem; /* Ajustar tamaño del título */
+    }
+
+    #hero p {
+        font-size: 1.2rem; /* Ajustar tamaño del párrafo */
+    }
+
+    .section {
+        padding: 20px 10px; /* Reducir el padding en móviles */
+    }
+
+    nav ul {
+        flex-direction: column; /* Cambiar a columna en móviles */
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Espaciado vertical en móviles */
+    }
+}
+
+@media (max-width: 600px) {
+    .btn {
+        width: 90%; /* Botones ocupan más ancho en móviles */
+    }
+
+    #solicitud-servicios label,
+    #solicitud-servicios input,
+    #solicitud-servicios select,
+    #solicitud-servicios button {
+        width: 90%; /* Ajustar ancho de formulario */
+        max-width: none; /* Sin límite máximo */
     }
 }
